@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORVIA COMPANY</title>
+    <link rel="icon" type="corviaogo.png" href="corvialogo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;600;800&family=JetBrains+Mono:wght=300;400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandDark: '#050505',
+                        brandCard: '#0a0a0a',
+                        brandRed: '#ff2222',
+                        brandRedHover: '#d91b1b',
+                        brandSilver: '#f3f4f6',
+                        brandGray: '#71717a',
+                        borderLight: '#141414',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050505;
+            background-image: radial-gradient(#141414 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .custom-scroll::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #ff2222;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="bg-brandDark text-brandSilver font-sans selection:bg-brandRed selection:text-white flex flex-col min-h-screen custom-scroll overflow-x-hidden">
+
+    <nav class="sticky top-0 z-50 bg-brandDark/90 backdrop-blur-md border-b border-borderLight px-6 py-4">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('home')">
+                <img src="corvialogo.png" alt="Corvia Logo" class="h-6 w-auto" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='block';">
+                <span id="logo-fallback" class="font-mono text-xs tracking-[0.25em] text-white uppercase font-bold flex items-center">
+                    CORVIA COMPANY<span class="text-brandRed font-black">_</span>
+                </span>
+            </div>
+
+            <div class="hidden md:flex items-center space-x-1 bg-brandCard/60 border border-borderLight p-1 rounded-lg font-mono text-[10px] uppercase tracking-wider">
+                <button onclick="navigateTo('home')" class="nav-link px-4 py-2 rounded-md text-white bg-brandDark border border-borderLight/40 transition-all">Home</button>
+                <button onclick="navigateTo('services')" class="nav-link px-4 py-2 rounded-md text-brandGray hover:text-white transition-all">Services</button>
+                <button onclick="navigateTo('estimator')" class="nav-link px-4 py-2 rounded-md text-brandGray hover:text-white transition-all">Estimator</button>
+                <button onclick="navigateTo('careers')" class="nav-link px-4 py-2 rounded-md text-brandGray hover:text-white transition-all">Careers</button>
+            </div>
+
+            <button onclick="navigateTo('estimator')" class="hidden md:inline-block border border-brandRed/30 text-brandRed hover:border-brandRed hover:bg-brandRed/10 px-4 py-2 rounded-lg font-mono text-[10px] uppercase tracking-widest transition-all">
+                get quote
+            </button>
+
+            <button id="menu-btn" onclick="toggleMobileMenu()" class="md:hidden text-brandSilver hover:text-white focus:outline-none z-50 p-2">
+                <i class="fa-solid fa-bars text-lg" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden absolute left-0 w-full bg-brandDark border-b border-borderLight px-6 py-6 transition-all duration-300 ease-in-out">
+            <div class="flex flex-col space-y-4 font-mono text-xs uppercase tracking-wider">
+                <button onclick="mobileNavigateTo('home')" class="mobile-nav-link text-left text-white py-2 border-b border-borderLight/40 w-full">Home</button>
+                <button onclick="mobileNavigateTo('services')" class="mobile-nav-link text-left text-brandGray py-2 border-b border-borderLight/40 w-full">Services</button>
+                <button onclick="mobileNavigateTo('estimator')" class="mobile-nav-link text-left text-brandGray py-2 border-b border-borderLight/40 w-full">Estimator</button>
+                <button onclick="mobileNavigateTo('careers')" class="mobile-nav-link text-left text-brandGray py-2 border-b border-borderLight/40 w-full">Careers</button>
+                
+                <button onclick="mobileNavigateTo('estimator')" class="w-full text-center border border-brandRed text-brandRed hover:bg-brandRed hover:text-white py-3 rounded-lg font-bold tracking-widest transition-all mt-4">
+                    get quote
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-6xl w-full mx-auto px-6 py-12 md:py-16">
+        
+        <section id="page-home" class="page-section space-y-16">
+            <div class="border-l-2 border-brandRed pl-6 md:pl-8 py-4 max-w-3xl space-y-6">
+                <span class="font-mono text-xs text-brandRed uppercase tracking-widest block">[ Creative Agency / Michigan, USA ]</span>
+                <h1 class="text-4xl md:text-7xl font-black text-white uppercase tracking-tight leading-none">
+                    WE BUILD DIGITAL WORLDS.
+                </h1>
+                <p class="text-brandGray text-base md:text-lg max-w-xl font-normal leading-relaxed">
+                    Corvia Company is a high-performance creative studio forging elite visual identities, custom websites, social architecture, and cinematic visual effects.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <button onclick="navigateTo('estimator')" class="bg-brandRed text-white px-6 py-3.5 rounded-lg font-mono text-xs uppercase tracking-wider font-bold hover:bg-white hover:text-black transition-all">
+                        Launch Project Estimator -
+                    </button>
+                    <button onclick="navigateTo('services')" class="border border-borderLight hover:border-brandRed/50 text-white px-6 py-3.5 rounded-lg font-mono text-xs uppercase tracking-wider font-bold transition-all">
+                        View Rates -
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 border-t border-borderLight pt-12">
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="font-mono text-xs text-brandRed uppercase tracking-widest">[ live matrix ]</div>
+                    <h2 class="text-2xl font-bold text-white uppercase tracking-tight">System Metrics</h2>
+                    <p class="text-sm text-brandGray leading-relaxed font-sans">
+                        We deploy custom layouts, interactive widgets, and optimized graphic configurations designed to capture target audiences. 
+                    </p>
+                    
+                    <div class="grid grid-cols-3 gap-4 font-mono">
+                        <div class="border border-borderLight p-4 rounded-xl bg-brandCard/40">
+                            <span class="block text-brandRed text-lg font-bold">10+</span>
+                            <span class="text-[9px] text-brandGray uppercase tracking-wider">Clients</span>
+                        </div>
+                        <div class="border border-borderLight p-4 rounded-xl bg-brandCard/40">
+                            <span class="block text-white text-lg font-bold">200+</span>
+                            <span class="text-[9px] text-brandGray uppercase tracking-wider">Supporters</span>
+                        </div>
+                        <div class="border border-borderLight p-4 rounded-xl bg-brandCard/40">
+                            <span class="block text-white text-lg font-bold">$75</span>
+                            <span class="text-[9px] text-brandGray uppercase tracking-wider">Prizes</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 border border-borderLight bg-brandCard rounded-2xl p-4 flex flex-col h-[400px]">
+                    <div class="flex items-center justify-between border-b border-borderLight pb-3 mb-4 font-mono text-xs uppercase tracking-widest">
+                        <span class="text-white"><i class="fa-brands fa-x-twitter text-brandRed mr-2"></i>@CorviaCo / feed</span>
+                        <span class="h-2 w-2 rounded-full bg-brandRed animate-pulse"></span>
+                    </div>
+                    <div class="flex-grow overflow-y-auto custom-scroll rounded-xl">
+                        <a class="twitter-timeline" data-theme="dark" data-chrome="noheader nofooter noborders transparent" href="https://twitter.com/CorviaCo?ref_src=twsrc%5Etfw">Tweets by CorviaCo</a> 
+                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-services" class="page-section hidden space-y-8 w-full">
+            <div class="flex flex-col space-y-2 border-l-2 border-brandRed pl-6">
+                <span class="font-mono text-xs text-brandRed uppercase tracking-widest">[ standard deployment rates ]</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-white uppercase tracking-tight">Services & Pricing</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-brandCard border border-borderLight p-6 rounded-2xl flex flex-col justify-between hover:border-brandRed/30 transition-all duration-300 relative group">
+                    <div class="absolute top-4 right-4 text-brandGray/20 group-hover:text-brandRed/20 transition-all font-mono text-[32px] font-black pointer-events-none">01</div>
+                    <div class="space-y-4">
+                        <div class="font-mono text-[10px] text-brandRed uppercase tracking-widest flex items-center space-x-2">
+                            <i class="fa-solid fa-palette"></i>
+                            <span>Vector Asset Build</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white uppercase tracking-tight">Complete Brand Kit</h3>
+                        <p class="text-xs text-brandGray leading-relaxed">Tailored corporate identity setups configured specifically for modern social media platforms.</p>
+                        
+                        <div class="font-mono text-3xl font-black text-white py-4 border-y border-borderLight flex items-baseline gap-2">
+                            <span>$60.00</span>
+                            <span class="text-[9px] text-brandGray font-normal uppercase tracking-widest">/ flat rate</span>
+                        </div>
+                        
+                        <ul class="space-y-2.5 text-xs text-brandGray font-mono pb-6">
+                            <li class="flex items-center"><span class="h-1 w-1 bg-brandRed mr-2 rounded-full"></span> Custom Logo Mark</li>
+                            <li class="flex items-center"><span class="h-1 w-1 bg-brandRed mr-2 rounded-full"></span> Typography Palette</li>
+                            <li class="flex items-center"><span class="h-1 w-1 bg-brandRed mr-2 rounded-full"></span> 3 Social Banners</li>
+                            <li class="flex items-center"><span class="h-1 w-1 bg-brandRed mr-2 rounded-full"></span> Editable File Package</li>
+                        </ul>
+                    </div>
+                    <button onclick="selectPackage('Complete Brand Kit', 60)" class="w-full bg-brandDark hover:bg-brandRed hover:text-white border border-borderLight text-brandSilver rounded-xl font-mono text-[10px] uppercase tracking-widest py-3.5 transition-all">
+                        Configure order
+                    </button>
+                </div>
+
+                <div class="bg-brandCard border border-borderLight p-6 rounded-2xl flex flex-col justify-between hover:border-brandRed/30 transition-all duration-300 relative group">
+                    <div class="absolute top-4 right-4 text-brandGray/20 group-hover:text-brandRed/20 transition-all font-mono text-[32px] font-black pointer-events-none">02</div>
+                    <div class="space-y-4">
+                        <div class="font-mono text-[10px] text-brandRed uppercase tracking-widest flex items-center space-x-2">
+                            <i class="fa-solid fa-video"></i>
+                            <span>vfx / production</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white uppercase tracking-tight">Premium Video</h3>
+                        <p class="text-xs text-brandGray leading-relaxed">Dynamic, fast-paced editing patterns designed to retain direct attention on public platform channels.</p>
+                        
+                        <div class="font-mono text-3xl font-black text-white py-4 border-y border-borderLight flex items-baseline gap-2">
+                            <span>$40.00</span>
+                            <span class="text-[9px] text-brandGray font-normal uppercase tracking-widest">/ up to 10m</span>
+                        </div>
+                        
+                        <ul class="space-y-2.5 text-xs text-brandGray font-mono pb-6">
+                            <li class="flex items-center"><span class="h-1 w-1 bg-brandRed mr-2 rounded-full"></span> Captions & Keyframing</li>
+                            <li class="flex items-center"><span class="h-1 w-1 bg-brandRed mr-2 rounded-full"></span> Custom SFX Layering</li>
+                            <li class="flex items-center"><span class="h-1 w-1 bg-brandRed mr-2 rounded-full"></span> Color Balance Pass</li>
+                            <li class="flex items-center"><span class="h-1 w-1 bg-brandRed mr-2 rounded-full"></span> Thumbnail Graphics</li>
+                        </ul>
+                    </div>
+                    <button onclick="selectPackage('Premium Video', 40)" class="w-full bg-brandDark hover:bg-brandRed hover:text-white border border-borderLight text-brandSilver rounded-xl font-mono text-[10px] uppercase tracking-widest py-3.5 transition-all">
+                        Configure order
+                    </button>
+                </div>
+
+                <div class="bg-brandCard border border-borderLight p-6 rounded-2xl flex flex-col justify-between hover:border-brandRed/30 transition-all duration-300 relative group">
+                    <div class="absolute top-4 right-4 text-brandGray/20 group-hover:text-brandRed/20 transition-all font-mono text-[32px] font-black pointer-events-none">03</div>
+                    <div class="space-y-4">
+                        <div class="font-mono text-[10px] text-brandRed uppercase tracking-widest flex items-center space-x-2">
+                            <i class="fa-solid fa-code"></i>
+                            <span>Web architecture</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white uppercase tracking-tight">Business Website</h3>
+                        <p class="text-xs text-brandGray leading-relaxed">Clean corporate and developer portfolio platforms optimized for search metrics and responsive setups.</p>
+                        
+                        <div class="font-mono text-3xl font-black text-white py-4 border-y border-borderLight flex items-baseline gap-2">
+                            <span>$175.00</span>
+                            <span class="text-[9px] text-brandGray font-normal uppercase tracking-widest">/ flat rate</span>
+                        </div>
+                        
+                        <ul class="space-y-2.5 text-xs text-brandGray font-mono pb-6">
+                            <li class="flex items-center"><span class="h-1 w-1 bg-brandRed mr-2 rounded-full"></span> Up to 10 Custom Sections</li>
+                            <li class="flex items-center"><span class="h-1 w-1 bg-brandRed mr-2 rounded-full"></span> Responsive Screen Layouts</li>
+                            <li class="flex items-center"><span class="h-1 w-1 bg-brandRed mr-2 rounded-full"></span> Integrated Forms & SEO</li>
+                            <li class="flex items-center"><span class="h-1 w-1 bg-brandRed mr-2 rounded-full"></span> 30-Day Project Support</li>
+                        </ul>
+                    </div>
+                    <button onclick="selectPackage('Business Website', 175)" class="w-full bg-brandDark hover:bg-brandRed hover:text-white border border-borderLight text-brandSilver rounded-xl font-mono text-[10px] uppercase tracking-widest py-3.5 transition-all">
+                        Configure order
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-estimator" class="page-section hidden space-y-8 w-full">
+            <div class="flex flex-col space-y-2 border-l-2 border-brandRed pl-6">
+                <span class="font-mono text-xs text-brandRed uppercase tracking-widest">[ pricing matrix engine ]</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-white uppercase tracking-tight">Interactive Estimator</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+                <div class="lg:col-span-8 bg-brandCard border border-borderLight p-6 rounded-2xl space-y-6">
+                    <div>
+                        <label class="block font-mono text-[10px] text-brandGray uppercase tracking-widest mb-3">01 // Graphic Design Tier</label>
+                        <select id="select-graphics" class="w-full bg-brandDark border border-borderLight rounded-xl p-3.5 font-mono text-xs text-brandSilver focus:border-brandRed outline-none transition-all cursor-pointer" onchange="calculateEstimate()">
+                            <option value="0">SELECT GRAPHICS PACKAGE [ NONE ]</option>
+                            <option value="5">Basic Graphics — $5.00</option>
+                            <option value="15">Standard Design — $15.00</option>
+                            <option value="30">Premium Design — $30.00</option>
+                            <option value="60">Complete Brand Kit — $60.00</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block font-mono text-[10px] text-brandGray uppercase tracking-widest mb-3">02 // Video Production Tier</label>
+                        <select id="select-video" class="w-full bg-brandDark border border-borderLight rounded-xl p-3.5 font-mono text-xs text-brandSilver focus:border-brandRed outline-none transition-all cursor-pointer" onchange="calculateEstimate()">
+                            <option value="0">SELECT VIDEO PACKAGE [ NONE ]</option>
+                            <option value="10">Basic Video Edit — $10.00</option>
+                            <option value="20">Creator Video Pack — $20.00</option>
+                            <option value="40">Premium Video Cut — $40.00</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block font-mono text-[10px] text-brandGray uppercase tracking-widest mb-3">03 // Web Development Architecture</label>
+                        <select id="select-web" class="w-full bg-brandDark border border-borderLight rounded-xl p-3.5 font-mono text-xs text-brandSilver focus:border-brandRed outline-none transition-all cursor-pointer" onchange="calculateEstimate()">
+                            <option value="0">SELECT WEB STRUCTURE [ NONE ]</option>
+                            <option value="50">Landing Page — $50.00</option>
+                            <option value="100">Starter Website — $100.00</option>
+                            <option value="175">Business Website — $175.00</option>
+                        </select>
+                    </div>
+
+                    <div class="border-t border-borderLight pt-6">
+                        <label class="block font-mono text-[10px] text-brandGray uppercase tracking-widest mb-4">04 // Custom Upgrades</label>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <label class="flex items-center space-x-3 bg-brandDark/40 border border-borderLight p-4 rounded-xl cursor-pointer hover:border-brandRed/40 transition-all select-none">
+                                <input type="checkbox" id="rush-up" value="10" class="accent-brandRed rounded w-4 h-4" onchange="calculateEstimate()">
+                                <span class="font-mono text-xs uppercase tracking-wider text-brandSilver">Rush 24h Delivery (+$10)</span>
+                            </label>
+                            <label class="flex items-center space-x-3 bg-brandDark/40 border border-borderLight p-4 rounded-xl cursor-pointer hover:border-brandRed/40 transition-all select-none">
+                                <input type="checkbox" id="source-up" value="10" class="accent-brandRed rounded w-4 h-4" onchange="calculateEstimate()">
+                                <span class="font-mono text-xs uppercase tracking-wider text-brandSilver">Include Editable Source Files (+$10)</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-4 bg-brandCard border border-borderLight p-8 rounded-2xl flex flex-col justify-between text-center relative overflow-hidden">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 bg-brandRed/5 rounded-full blur-3xl pointer-events-none"></div>
+                    <div>
+                        <span class="font-mono text-[10px] text-brandGray uppercase tracking-[0.2em] block mb-4">[ Current Calculation ]</span>
+                        <div class="text-6xl font-extrabold text-white font-mono tracking-tighter my-12" id="calc-total">$0.00</div>
+                        <p class="text-xs text-brandGray max-w-xs mx-auto leading-relaxed font-mono">
+                            Calculations are based on active workspace parameters and deployment metrics.
+                        </p>
+                    </div>
+                    <button onclick="submitProjectRequest()" class="w-full bg-brandRed hover:bg-brandRedHover text-white py-4 rounded-xl font-mono text-xs uppercase tracking-widest font-bold transition-all mt-8">
+                        Process request
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-careers" class="page-section hidden space-y-8 w-full">
+            <div class="flex flex-col space-y-2 border-l-2 border-brandRed pl-6">
+                <span class="font-mono text-xs text-brandRed uppercase tracking-widest">[ active network positions ]</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-white uppercase tracking-tight">Open Positions</h2>
+            </div>
+
+            <div class="space-y-4 max-w-4xl">
+                <div class="bg-brandCard border border-borderLight p-6 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-brandRed/30 transition-all">
+                    <div class="space-y-2">
+                        <span class="font-mono text-[9px] text-brandRed uppercase tracking-widest">[ POSITION_01 // CONTRACT ]</span>
+                        <h3 class="text-xl font-bold text-white uppercase tracking-tight">Graphic Designer</h3>
+                        <p class="text-xs text-brandGray max-w-xl">Designing premium social media assets, logos, and vector configurations for our client catalog.</p>
+                    </div>
+                    <a href="mailto:devin@corviastudios.net?subject=Application%20-%20GFX%20Designer%20(CorviaCo)" class="font-mono text-[10px] uppercase border border-borderLight hover:border-brandRed hover:text-brandRed text-white px-6 py-3.5 rounded-xl text-center transition-all">
+                        apply direct
+                    </a>
+                </div>
+
+                <div class="bg-brandCard border border-borderLight p-6 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-brandRed/30 transition-all">
+                    <div class="space-y-2">
+                        <span class="font-mono text-[9px] text-brandRed uppercase tracking-widest">[ POSITION_02 // CONTRACT ]</span>
+                        <h3 class="text-xl font-bold text-white uppercase tracking-tight">VFX & Video Editor</h3>
+                        <p class="text-xs text-brandGray max-w-xl">Stitching and layering dynamic short-form and high-production content assets.</p>
+                    </div>
+                    <a href="mailto:devin@corviastudios.net?subject=Application%20-%20VFX%20Video%20Editor%20(CorviaCo)" class="font-mono text-[10px] uppercase border border-borderLight hover:border-brandRed hover:text-brandRed text-white px-6 py-3.5 rounded-xl text-center transition-all">
+                        apply direct
+                    </a>
+                </div>
+
+                <div class="bg-brandCard border border-borderLight p-6 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-brandRed/30 transition-all">
+                    <div class="space-y-2">
+                        <span class="font-mono text-[9px] text-brandRed uppercase tracking-widest">[ POSITION_03 // CONTRACT ]</span>
+                        <h3 class="text-xl font-bold text-white uppercase tracking-tight">Web Developer</h3>
+                        <p class="text-xs text-brandGray max-w-xl">Deploying sleek digital interfaces, conversion tunnels, and modular structural web pages.</p>
+                    </div>
+                    <a href="mailto:devin@corviastudios.net?subject=Application%20-%20Web%20Developer%20(CorviaCo)" class="font-mono text-[10px] uppercase border border-borderLight hover:border-brandRed hover:text-brandRed text-white px-6 py-3.5 rounded-xl text-center transition-all">
+                        apply direct
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-brandDark border-t border-borderLight py-8 px-6 font-mono text-xs mt-auto">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left space-y-1">
+                <p class="text-white font-bold tracking-widest uppercase">CORVIA COMPANY</p>
+                <p class="text-[9px] text-brandGray">© 2026 CORVIA COMPANY. STRUCTURED TO WIN.</p>
+            </div>
+            <div class="flex space-x-6 text-brandGray">
+                <a href="https://discord.gg/corviaco" target="_blank" class="hover:text-brandRed transition-all"><i class="fa-brands fa-discord text-base"></i></a>
+                <a href="mailto:inquires@corviaco.org" class="hover:text-brandRed transition-all"><i class="fa-solid fa-envelope text-base"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="fixed bottom-6 right-6 z-50 font-mono">
+        <button id="chat-fab" onclick="toggleChatWindow()" class="bg-brandRed hover:bg-white text-white hover:text-black h-12 w-12 rounded-xl flex items-center justify-center border border-borderLight transition-all shadow-lg shadow-brandRed/10 text-lg">
+            🤖
+        </button>
+
+        <div id="chat-window" class="hidden absolute bottom-16 right-0 w-80 md:w-96 bg-brandDark border border-borderLight shadow-2xl rounded-2xl overflow-hidden flex flex-col">
+            <div class="bg-brandCard border-b border-borderLight p-4 flex items-center justify-between">
+                <div class="flex items-center space-x-2 text-[10px] tracking-widest text-brandRed uppercase">
+                    <span class="text-sm">🤖</span>
+                    <span>Corvia Company Agent</span>
+                </div>
+                <button onclick="toggleChatWindow()" class="text-brandGray hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="h-64 p-4 overflow-y-auto space-y-3 text-[11px] leading-relaxed custom-scroll bg-brandCard/40" id="chat-body">
+                <div class="flex flex-col space-y-1">
+                    <span class="text-brandRed font-bold text-[9px] uppercase tracking-wider">[ SYSTEM ]</span>
+                    <div class="text-brandSilver">
+                        Connection established with Corvia Company. Ready to detail web architecture packages, vector design kits, or video edit structures. State your target requirements.
+                    </div>
+                </div>
+            </div>
+            <div class="p-3 border-t border-borderLight flex gap-2 bg-brandDark">
+                <input id="chat-input" type="text" placeholder="QUERY ESTIMATES OR SPECS..." class="flex-1 bg-brandCard text-brandSilver text-[10px] p-3 rounded-lg outline-none border border-borderLight focus:border-brandRed font-mono uppercase tracking-wider" onkeydown="if(event.key==='Enter') sendMessage()">
+                <button onclick="sendMessage()" class="bg-brandRed text-white px-4 py-2 rounded-lg text-[10px] uppercase font-bold hover:bg-white hover:text-black transition-all">QUERY</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function navigateTo(pageId) {
+            const pages = document.querySelectorAll('.page-section');
+            pages.forEach(page => page.classList.add('hidden'));
+
+            const activePage = document.getElementById(`page-${pageId}`);
+            if (activePage) {
+                activePage.classList.remove('hidden');
+            }
+
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                const linkText = link.innerText.toLowerCase();
+                if (linkText.includes(pageId)) {
+                    link.classList.add('text-white', 'bg-brandDark', 'border', 'border-borderLight/40');
+                    link.classList.remove('text-brandGray');
+                } else {
+                    link.classList.remove('text-white', 'bg-brandDark', 'border', 'border-borderLight/40');
+                    link.classList.add('text-brandGray');
+                }
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Hamburger Menu Logic
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.className = "fa-solid fa-xmark text-lg text-brandRed";
+            } else {
+                menu.classList.add('hidden');
+                icon.className = "fa-solid fa-bars text-lg";
+            }
+        }
+
+        function mobileNavigateTo(pageId) {
+            // Close mobile drawer
+            toggleMobileMenu();
+            
+            // Invoke master routing switch
+            navigateTo(pageId);
+        }
+
+        function calculateEstimate() {
+            let total = 0;
+            const graphicsVal = parseFloat(document.getElementById('select-graphics').value);
+            const videoVal = parseFloat(document.getElementById('select-video').value);
+            const webVal = parseFloat(document.getElementById('select-web').value);
+
+            total += graphicsVal;
+            total += videoVal;
+            total += webVal;
+
+            if (document.getElementById('rush-up').checked) total += 10;
+            if (document.getElementById('source-up').checked) total += 10;
+
+            document.getElementById('calc-total').innerText = `$${total.toFixed(2)}`;
+        }
+
+        function selectPackage(name, price) {
+            navigateTo('estimator');
+            if (name === 'Complete Brand Kit') document.getElementById('select-graphics').value = "60";
+            if (name === 'Premium Video') document.getElementById('select-video').value = "40";
+            if (name === 'Business Website') document.getElementById('select-web').value = "175";
+            calculateEstimate();
+        }
+
+        function submitProjectRequest() {
+            const finalPrice = document.getElementById('calc-total').innerText;
+            alert(`ORDER CONFIGURED: ${finalPrice}. Connecting to pipeline...`);
+        }
+
+        function toggleChatWindow() {
+            const windowEl = document.getElementById('chat-window');
+            windowEl.classList.toggle('hidden');
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const chatBody = document.getElementById('chat-body');
+            const userMsg = input.value.trim();
+
+            if (!userMsg) return;
+
+            // Render User query
+            const userBubble = document.createElement('div');
+            userBubble.className = "flex flex-col space-y-1 items-end";
+            userBubble.innerHTML = `
+                <span class="text-brandGray font-bold text-[9px] uppercase tracking-wider">[ USER ]</span>
+                <div class="text-white bg-white/5 border border-borderLight p-2 rounded-lg max-w-[85%]">${userMsg.toUpperCase()}</div>
+            `;
+            chatBody.appendChild(userBubble);
+            const rawText = userMsg.toLowerCase();
+            input.value = '';
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            let reply = "QUERY NOT FOUND IN LOCAL DATA DICTIONARY. ASK SPECIFICALLY ABOUT GRAPHIC DESIGN, VIDEO EDITING, OR WEBSITE COST MATRICES.";
+
+            if (rawText.includes('website') || rawText.includes('web') || rawText.includes('site')) {
+                reply = "WEB ARCHITECTURE RATES:<br><br>" +
+                        "• LANDING PAGE: $50.00 (SINGLE LAYOUT, RESPONSIVE DESIGN)<br>" +
+                        "• STARTER SITE: $100.00 (UP TO 5 PAGES, BASIC SEO ROUTING)<br>" +
+                        "• BUSINESS SITE: $175.00 (UP TO 10 SECTIONS, LIVE BLOG ROUTE, 30-DAY ASSISTANCE)";
+            } else if (rawText.includes('graphic') || rawText.includes('logo') || rawText.includes('gfx') || rawText.includes('banner')) {
+                reply = "VECTOR GRAPHIC PACKAGES:<br><br>" +
+                        "• BASIC GFX: STARTING AT $5.00 (THUMBNAILS, SOCIAL BANNERS)<br>" +
+                        "• STANDARD: $15.00 (CUSTOM ASSETS + 2 CORRECTIONS)<br>" +
+                        "• PREMIUM DESIGN: $30.00 (LOGO + BANNER KIT + COLORS)<br>" +
+                        "• BRAND KIT: $60.00 (PRO VECTOR LOGO, BRAND GUIDES, 4 REVISIONS)";
+            } else if (rawText.includes('video') || rawText.includes('vfx') || rawText.includes('edit')) {
+                reply = "CINEMATIC EDITING SPECIFICATIONS:<br><br>" +
+                        "• BASIC EDIT: $10.00 (UNDER 1 MIN, STANDARD CUTS)<br>" +
+                        "• CREATOR LEVEL: $20.00 (MOTION OVERLAYS, COLOR TRACKING)<br>" +
+                        "• PREMIUM CUTS: $40.00 (ADVANCED FX CHOREOGRAPHY + THUMBNAIL)";
+            } else if (rawText.includes('price') || rawText.includes('cost') || rawText.includes('how much')) {
+                reply = "RATES CONFIGURATION:<br><br>" +
+                        "• DESIGN WORKFLOWS: STARTS AT $5.00<br>" +
+                        "• VIDEO PRODUCTS: STARTS AT $10.00<br>" +
+                        "• WEB PLATFORMS: STARTS AT $50.00<br><br>" +
+                        "USE OUR INTERACTIVE PROJECT ESTIMATOR TO MANIPULATE OPTIONS AND LOCK IN BUDGETS.";
+            }
+
+            // Render Agent reply
+            setTimeout(() => {
+                const agentBubble = document.createElement('div');
+                agentBubble.className = "flex flex-col space-y-1";
+                agentBubble.innerHTML = `
+                    <span class="text-brandRed font-bold text-[9px] uppercase tracking-wider">[ AGENT_REPLY ]</span>
+                    <div class="text-brandSilver bg-brandCard p-2 border border-borderLight rounded-lg max-w-[85%]">${reply}</div>
+                `;
+                chatBody.appendChild(agentBubble);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 400);
+        }
+    </script>
+</body>
+</html>
